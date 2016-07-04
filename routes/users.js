@@ -20,6 +20,12 @@ router.get('/:id/pictures', function(req, res, next) {
   });
 });
 
+router.get('/:id/pictures/:type', function(req, res, next) {
+  Users.getLastPicture(req.params.id, req.params.type).then(function(data) {
+    res.send(data);
+  });
+});
+
 router.get('/:id/measurements', function(req, res, next) {
   Users.getAllUserMeasures(req.params.id).then(function(data) {
     res.send(data);

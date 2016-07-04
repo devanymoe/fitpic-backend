@@ -19,6 +19,9 @@ module.exports = {
   getAllUserPictures: function(id) {
     return Pictures().select().where('user_id', id).orderBy('date', 'DESC').orderBy('type');
   },
+  getLastPicture: function(id, type) {
+    return Pictures().select().where({user_id: id, type: type}).orderBy('date', 'DESC').limit(1);
+  },
   getAllUserMeasures: function(id) {
     return Measurements().select().where('user_id', id).orderBy('date', 'DESC');
   },
