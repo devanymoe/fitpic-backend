@@ -48,5 +48,8 @@ module.exports = {
       thigh: body.thigh,
       calf: body.calf
     }, '*');
+  },
+  deleteMeasure: function(measure_id) {
+    return Measurements().where('id', measure_id).del();
   }
 }

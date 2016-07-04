@@ -32,6 +32,12 @@ router.post('/:id/measurements/new', function(req, res, next) {
   })
 });
 
+router.delete('/:id/measurements/:measureId/delete', function(req, res, next) {
+  Users.deleteMeasure(req.params.measureId).then(function(data) {
+    res.sendStatus(200);
+  })
+});
+
 router.get('/:id/all', function(req, res, next) {
   Users.getAllUserPictures(req.params.id).then(function(pictures) {
     Users.getAllUserMeasures(req.params.id).then(function(measurements) {
