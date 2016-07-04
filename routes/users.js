@@ -26,6 +26,12 @@ router.get('/:id/measurements', function(req, res, next) {
   })
 });
 
+router.post('/:id/measurements/new', function(req, res, next) {
+  Users.postNewMeasure(req.params.id, req.body).then(function(data) {
+    res.send(data);
+  })
+});
+
 router.get('/:id/all', function(req, res, next) {
   Users.getAllUserPictures(req.params.id).then(function(pictures) {
     Users.getAllUserMeasures(req.params.id).then(function(measurements) {
