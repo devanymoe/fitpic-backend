@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 var Users = require('../models/users');
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -18,6 +20,12 @@ router.get('/:id/pictures', function(req, res, next) {
   Users.getAllUserPictures(req.params.id).then(function(data) {
     res.send(data);
   });
+});
+
+router.post('/:id/pictures/new', upload.single('image'), function(req, res, next) {
+  console.log(req.file)
+  console.log(req.body)
+  res.sendStatus(200);
 });
 
 router.get('/:id/pictures/:type', function(req, res, next) {

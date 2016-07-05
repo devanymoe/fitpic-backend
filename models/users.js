@@ -1,4 +1,6 @@
+var Upload = require('s3-uploader');
 var knex = require('../db/knex');
+
 
 function Users() {
   return knex('users');
@@ -54,5 +56,8 @@ module.exports = {
   },
   deleteMeasure: function(measure_id) {
     return Measurements().where('id', measure_id).del();
+  },
+  uploadPicture: function(picture) {
+
   }
 }
