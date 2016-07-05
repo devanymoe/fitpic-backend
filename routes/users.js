@@ -4,6 +4,32 @@ var knex = require('../db/knex');
 var Users = require('../models/users');
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
+var S3Upload = require('s3-uploader');
+var client = new S3Upload('fitpic', {
+  aws: {
+    path: 'images/',
+    region: 'us-west-2',
+    acl: 'public-read',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_KEY
+  },
+
+  cleanup: {
+    versions: true,
+    original: true
+  },
+
+  original: {
+    awsImageAcl: 'public-read'
+  },
+
+  versions: [{
+    maxHeight: 2000,
+    maxWidth: 1500,
+    format: 'jpg',
+    quality: 80,
+  }]
+});
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -23,9 +49,13 @@ router.get('/:id/pictures', function(req, res, next) {
 });
 
 router.post('/:id/pictures/new', upload.single('image'), function(req, res, next) {
-  console.log(req.file)
-  console.log(req.body)
-  res.sendStatus(200);
+  console.log(req.file.path)
+  client.upload(req.file.path, {}, function(err, versions, meta) {
+    if (err) { throw err; }
+    Users.postImage(versions[0].url, req.body.type, req.body.date, req.params.id).then(function(data) {
+      res.send(data);
+    });
+  });
 });
 
 router.get('/:id/pictures/:type', function(req, res, next) {
