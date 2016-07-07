@@ -1,7 +1,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('measurements', function(table) {
     table.increments();
-    table.integer('user_id')
+    table.string('user_id')
       .references('id')
       .inTable('users')
       .onDelete('CASCADE');
