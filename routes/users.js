@@ -49,7 +49,6 @@ router.get('/:id/pictures', function(req, res, next) {
 });
 
 router.post('/:id/pictures/new', upload.single('image'), function(req, res, next) {
-  console.log(req.file.path)
   client.upload(req.file.path, {}, function(err, versions, meta) {
     if (err) { throw err; }
     Users.postImage(versions[0].url, req.body.type, req.body.date, req.params.id).then(function(data) {
