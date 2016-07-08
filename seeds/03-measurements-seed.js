@@ -3,7 +3,7 @@ exports.seed = function(knex, Promise) {
     return knex('measurements').del().then(function() {
       return Promise.join(
         knex('measurements').insert({
-          user_id: 'google-oauth2|114974362814664392160',
+          user_id: 'google-oauth2|109401067759378352001',
           date: '2016-07-01T20:48:51.564Z',
           weight: '225',
           neck: '20',
@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
           calf: '14'
         }),
         knex('measurements').insert({
-          user_id: 'google-oauth2|114974362814664392160',
+          user_id: 'google-oauth2|109401067759378352001',
           date: '2016-06-04T20:48:51.564Z',
           weight: '189',
           neck: '18',
@@ -27,7 +27,7 @@ exports.seed = function(knex, Promise) {
           calf: '13'
         }),
         knex('measurements').insert({
-          user_id: 'google-oauth2|114974362814664392160',
+          user_id: 'google-oauth2|109401067759378352001',
           date: '2016-05-02T20:48:51.564Z',
           weight: '160',
           neck: '15',
