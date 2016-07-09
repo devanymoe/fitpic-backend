@@ -77,7 +77,7 @@ module.exports = {
         return Pictures().select().where('user_id', id).andWhere('type', 'back').orderBy('date', 'DESC').limit(1)
       .then(function(lastBack) {
         var firstM = firstMeasure[0] || undefined;
-        var lastM = firstMeasure[0] || undefined;
+        var lastM = lastMeasure[0] || undefined;
         var firstF = firstFront[0].url || undefined;
         var firstS = firstSide[0].url || undefined;
         var firstB = firstBack[0].url || undefined;
