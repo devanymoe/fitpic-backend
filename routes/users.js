@@ -59,7 +59,7 @@ router.post('/pictures/new', jwtCheck, upload.single('image'), function(req, res
   client.upload(req.file.path, {}, function(err, versions, meta) {
     if (err) { throw err; }
     Users.postImage(versions[0].url, req.body.type, req.body.date, req.user.sub).then(function(data) {
-      res.send(data);
+      res.send(data[0]);
     });
   });
 });
@@ -84,6 +84,12 @@ router.post('/measurements/new', jwtCheck, function(req, res, next) {
 
 router.delete('/measurements/:measureId/delete', jwtCheck, function(req, res, next) {
   Users.deleteMeasure(req.params.measureId).then(function(data) {
+    res.sendStatus(200);
+  })
+});
+
+router.delete('/pictures/delete', jwtCheck, function(req, res, next) {
+  Users.deletePicture(req.body.url).then(function(data) {
     res.sendStatus(200);
   })
 });

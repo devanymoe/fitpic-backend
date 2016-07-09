@@ -55,8 +55,11 @@ module.exports = {
   deleteMeasure: function(measure_id) {
     return Measurements().where('id', measure_id).del();
   },
+  deletePicture: function(url) {
+    return Pictures().where('url', url).del();
+  },
   postImage: function(url, type, date, user_id) {
-    return Pictures().insert({user_id: user_id, date: date, type: type, url: url}, '*')
+    return Pictures().insert({user_id: user_id, date: date, type: type, url: url}, '*');
   },
   getProgress: function(id) {
     return Measurements().select().where('user_id', id).orderBy('date', 'ASC').limit(1)
@@ -113,7 +116,7 @@ module.exports = {
   getProgressWeight: function(id) {
     return Measurements().select('weight', 'date').where('user_id', id).orderBy('date', 'ASC').then(function(data) {
       var formatDate = function(obj) {
-        var month = obj.date.getMonth();
+        var month = obj.date.getMonth() + 1;
         var day = obj.date.getDate();
         var year = obj.date.getFullYear();
 
