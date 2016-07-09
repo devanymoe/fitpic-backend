@@ -111,6 +111,17 @@ module.exports = {
     });
   },
   getProgressWeight: function(id) {
-    return Measurements().select('weight', 'date').where('user_id', id).orderBy('date', 'ASC');
+    return Measurements().select('weight', 'date').where('user_id', id).orderBy('date', 'ASC').then(function(data) {
+      var formatDate = function(obj) {
+        var month = obj.date.getMonth();
+        var day = obj.date.getDate();
+        var year = obj.date.getFullYear();
+
+        obj.date = month + '/' + day + '/' + year;
+      }
+
+      data.forEach(formatDate);
+      return data;
+    });
   }
 }

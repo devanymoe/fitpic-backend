@@ -104,6 +104,7 @@ router.get('/progress', jwtCheck, function(req, res, next) {
 
 router.get('/progress/weight', jwtCheck, function(req, res, next) {
   Users.getProgressWeight(req.user.sub).then(function(data) {
+    console.log(data)
     res.send(data);
   });
 });
