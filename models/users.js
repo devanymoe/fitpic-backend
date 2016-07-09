@@ -59,7 +59,6 @@ module.exports = {
     return Pictures().insert({user_id: user_id, date: date, type: type, url: url}, '*')
   },
   getProgress: function(id) {
-    console.log('got to model')
     return Measurements().select().where('user_id', id).orderBy('date', 'ASC').limit(1)
     .then(function(firstMeasure) {
       return Measurements().select().where('user_id', id).orderBy('date', 'DESC').limit(1)
@@ -110,5 +109,8 @@ module.exports = {
     });
     });
     });
+  },
+  getProgressWeight: function(id) {
+    return Measurements().select('weight', 'date').where('user_id', id).orderBy('date', 'ASC');
   }
 }
