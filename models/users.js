@@ -78,14 +78,14 @@ module.exports = {
       .then(function(firstBack) {
         return Pictures().select().where('user_id', id).andWhere('type', 'back').orderBy('date', 'DESC').limit(1)
       .then(function(lastBack) {
-        var firstM = firstMeasure[0] || undefined;
-        var lastM = lastMeasure[0] || undefined;
-        var firstF = firstFront[0].url || undefined;
-        var firstS = firstSide[0].url || undefined;
-        var firstB = firstBack[0].url || undefined;
-        var lastF = lastFront[0].url || undefined;
-        var lastS = lastSide[0].url || undefined;
-        var lastB = lastBack[0].url || undefined;
+        var firstM = firstMeasure[0] ? firstMeasure[0] : undefined;
+        var lastM = lastMeasure[0] ? lastMeasure[0] : undefined;
+        var firstF = firstFront[0] ? firstFront[0].url : undefined;
+        var firstS = firstSide[0] ? firstSide[0].url : undefined;
+        var firstB = firstBack[0] ? firstBack[0].url : undefined;
+        var lastF = lastFront[0] ? lastFront[0].url : undefined;
+        var lastS = lastSide[0] ? lastSide[0].url : undefined;
+        var lastB = lastBack[0] ? lastBack[0].url : undefined;
         return {
           measurements: {
             first: firstM,
