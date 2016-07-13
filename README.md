@@ -3,6 +3,6 @@ FitPic is a React Native app for iOS and Android that helps users to track their
 
 Technologies used include React Native, AWS S3, Auth0, JWT, Multer, Knex, PostgreSQL, Node.js, and Express.
 
-
+Demo video: https://www.youtube.com/watch?v=6vSAUlyF9Ds
 
 ![FitPic](https://cloud.githubusercontent.com/assets/13595230/16793488/506bc31a-4886-11e6-9564-326b7e6d107a.jpg)
